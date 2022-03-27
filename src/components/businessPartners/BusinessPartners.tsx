@@ -11,7 +11,7 @@ interface PropType {
   title: JSX.Element;
 }
 
-const BusinessPartners: React.FunctionComponent<PropType> = ({ title }) => {
+export const BusinessPartners: React.FunctionComponent<PropType> = ({ title }) => {
   return <div className={styles.content}>
     <Divider orientation='left' >{title}</Divider>
     <Row>
@@ -31,4 +31,3 @@ const BusinessPartners: React.FunctionComponent<PropType> = ({ title }) => {
   </div>
 };
 
-export default BusinessPartners;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Layout, Typography, Input, Menu, Button, Dropdown } from 'antd';
 import { GlobalOutlined } from '@ant-design/icons';
+import { useHistory, useLocation, useParams, useRouteMatch } from 'react-router-dom'
 import logo from '../../assets/logo.svg';
 import styles from './Header.module.css';
 
@@ -10,6 +11,12 @@ interface IHeaderProps {
 const { Title, Text } = Typography;
 const { Search } = Input;
 export const Header: React.FunctionComponent<IHeaderProps> = (props) => {
+
+  const history = useHistory();   // 获得history的路由数据
+  const location = useLocation();  // 当前路径的信息
+  const params = useParams(); // 获得url参数
+  const match = useRouteMatch(); // 路径匹配的数据
+
   return (
     <div className={styles['app-header']}>
       {/* top-header */}
@@ -28,14 +35,16 @@ export const Header: React.FunctionComponent<IHeaderProps> = (props) => {
             <GlobalOutlined />语言
           </Dropdown.Button>
           <Button.Group className={styles['button-group']}>
-            <Button>登录</Button>
-            <Button>注册</Button>
+            <Button onClick={() => history.push("signIn")}>登录</Button>
+            <Button onClick={() => history.push("register")}>注册</Button>
           </Button.Group>
         </div>
       </div>
       <Layout.Header className={styles['main-header']}>
-        <img src={logo} className={styles["App-logo"]} />
-        <Title level={3} className={styles.title}> Enzan 旅游网 </Title>
+        <span onClick={() => history.push("/")}>
+          <img src={logo} className={styles["App-logo"]} />
+          <Title level={3} className={styles.title}> Enzan 旅游网 </Title>
+        </span>
         <Search placeholder="请输入旅游目的地、主题、或关键字" enterButton className={styles['search-input']} />
       </Layout.Header>
       <Menu mode={"horizontal"} className={styles["main-menu"]}>
