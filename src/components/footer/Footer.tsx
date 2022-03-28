@@ -1,15 +1,14 @@
 import * as React from 'react';
 import { Layout, Typography } from 'antd';
-
-interface IFooterProps {
-}
+import { useTranslation } from 'react-i18next';
 
 const { Title } = Typography;
-export const Footer: React.FunctionComponent<IFooterProps> = (props) => {
+export const Footer: React.FunctionComponent = () => {
+  const { t } = useTranslation();
   return (
     <Layout.Footer>
       <Title level={3} style={{ textAlign: 'center' }}>
-        版权所有 @ Enzan 旅游网
+        {t("tooter.detail")}
       </Title>
     </Layout.Footer>
   );
